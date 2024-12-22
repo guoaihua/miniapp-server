@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>hello world</div>
+    <input type="file" id="fileInput" multiple>
+    <script>
+
+        const testApi = async()=> {
+            const inputEle = document.querySelector('#fileInput')
+            inputEle.onchange = async()=> {
+                console.log('%c [ e ]-16', 'font-size:13px; background:pink; color:#bf2c9f;', inputEle.files)
+                const data = new FormData()
+                data.set('name', 'adsad')
+                data.set('age', 22)
+                data.set('file1', fileInput.files[0]);
+                data.set('file2', fileInput.files[1]);
+
+                const res = await fetch(`/bb/file`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'multipart/form-data;boundary=--adsads'
+                },
+                body: data
+            })
+            console.log('%c [ res ]-14', 'font-size:13px; background:pink; color:#bf2c9f;',await res.text())
+               
+            }
+
+        }
+
+        testApi()
+        
+    </script>
+</body>
+</html>
